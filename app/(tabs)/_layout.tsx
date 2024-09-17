@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Pressable, Image } from 'react-native';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
@@ -15,45 +15,96 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
-export default function TabLayout() {
+export default function TabLayout() { 
   const colorScheme = useColorScheme();
+  
+  const isDarkMode = colorScheme === 'dark';
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+        tabBarStyle: {
+          backgroundColor: isDarkMode ? '#131E22' : '#131E22',
+          borderTopColor: isDarkMode ? '#ffff' : '#ffff',  
+          height: 80, 
+        },
+        tabBarIconStyle: {
+          alignItems: 'center',  
+          justifyContent: 'center',
+        },
+        tabBarLabelStyle: {
+          display: 'none',  // Hide tab labels
+        },
+        headerShown: useClientOnlyValue(false, true), 
+      }}
+    >
+
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../../assets/images/main/cave.png')}
+              style={{ width: 60, height: 60 }}
+            />
           ),
         }}
       />
+
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../../assets/images/main/calender.png')}
+              style={{ width: 60, height: 60 }}
+            />
+          ),
         }}
       />
+
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../../assets/images/main/joystick.png')}
+              style={{ width: 60, height: 60 }}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="four"
+        options={{
+          title: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../../assets/images/main/group.png')}
+              style={{ width: 60, height: 60 }}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="five"
+        options={{
+          title: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../../assets/images/main/profile.png')}
+              style={{ width: 60, height: 60 }}
+            />
+          ),
+        }}
+      />
+      
     </Tabs>
   );
 }

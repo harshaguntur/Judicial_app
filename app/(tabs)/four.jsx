@@ -5,10 +5,9 @@ export default function FullScreenImage() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/main/two.jpg')}
+        source={require('../../assets/images/main/four.png')} 
         style={styles.fullScreenImage}
-        resizeMode="cover" 
-      />
+        resizeMode="cover"       />
     </View>
   );
 }
@@ -16,7 +15,8 @@ export default function FullScreenImage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000', },
+    backgroundColor: '#000', 
+  },
   fullScreenImage: {
     flex: 1,
     width: '100%',

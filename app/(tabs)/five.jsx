@@ -5,7 +5,7 @@ export default function FullScreenImage() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/main/two.jpg')}
+        source={require('../../assets/images/main/five.jpg')}
         style={styles.fullScreenImage}
         resizeMode="cover" 
       />
